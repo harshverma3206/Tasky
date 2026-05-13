@@ -1,46 +1,28 @@
 import React from 'react'
-import { TiPlus } from "react-icons/ti";
 
-const sectionStyle = [
-    {
-        name: 'To Do',
-        count: 0,
-    },
-    {
-        name: 'In Progress',
-        count: 0,
-    },
-    {
-        name: 'Completed',
-        count: 0,
-    }
-]
+//Icons
+import { TiPlus } from "react-icons/ti";
+import { RxCross1 } from "react-icons/rx";
+
+//Components
+import Pending from '../Components/Pending';
+import Completed from '../Components/Completed';
+import Progress from '../Components/Progress';
 
 const Hero = () => {
     return (
-        <div className='bg-amber-200 p-5! md:px-15! lg:px-20! relative'>
-            <button className='fixed bottom-10 left-1/2 -translate-x-1/2 p-5! active:scale-90 transition-all rounded-full bg-amber-900 text-amber-50 text-2xl'>
+        <div className='bg-[var(--primary-black)] p-5! md:px-10! sm:px-7! lg:px-13! relative min-h-screen flex flex-col'>
+            <button className='fixed bottom-10 right-10 lg:right-auto lg:left-1/2 lg:-translate-x-1/2 p-5! active:scale-90 transition-all rounded-full text-2xl bg-[var(--primary-dark)] text-[var(--primary-extra-light)]'>
                 <TiPlus />
             </button>
 
-            <h1 className='mb-10! lg:px-10! fixed top-5 left-5'>Tasky</h1>
+            <h1 className='lg:px-10! fixed top-5 left-5'>Tasky</h1>
 
             {/* Board */}
-            <div className='flex flex-col lg:flex-row gap-2 justify-between bg-pink-500/5 mt-20!'>
-                {sectionStyle.map((section, index) => (
-                    <div className='bg-amber-700/50 p-5! lg:px-8! rounded-2xl w-full min-w-[250px] min-h-[200px] lg:min-h-[550px]'>
-                        <div key={index} className='flex justify-between'>
-                            <h2>{section.name}</h2>
-                            <h2>{section.count}</h2>
-                        </div>
-
-                        <div>
-                            Task 01
-                            Task 02
-                            Task 03
-                        </div>
-                    </div>
-                ))}
+            <div className='flex flex-col lg:flex-row gap-5 justify-between mt-25! lg:grow pb-8!'>
+                <Pending />
+                <Progress />
+                <Completed />
             </div>
         </div>
     )

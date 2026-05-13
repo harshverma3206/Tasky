@@ -1,7 +1,14 @@
 @import "tailwindcss";
 
 
-:root {}
+:root {
+  /* --primary: #ffd3b3; */
+  --primary-dark: #d56610;
+  --primary-light: rgba(255, 255, 255, 0.4);
+  --primary-extra-light: #e4ddd9;
+  --primary-black: #23201D;
+  --glass-color: rgba(255, 255, 255, 0.22);
+}
 
 * {
   margin: 0;
@@ -9,6 +16,7 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
   font-family: "Elms Sans", sans-serif;
+  transition: all 0.2s ease-in-out;
 }
 
 html,
@@ -17,6 +25,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
+
 }
 
 img {
@@ -27,15 +36,34 @@ img {
 button {
   cursor: pointer;
   border: none;
+  z-index: 10;
 }
 
 
 h1 {
   font-family: "Manufacturing Consent", system-ui;
   font-size: clamp(2.5rem, 5vw, 3rem);
+  color: var(--primary-dark);
+  /* text-shadow: var(--primary-light) 2px 2px 6px; */
 }
 
 h2 {
   font-weight: 500;
-  font-size: clamp(1.5rem, 3vw, 1.5rem);
+  font-size: clamp(1.5rem, 3vw, 1.8rem);
+  color: var(--primary-extra-light);
+}
+
+h3 {
+  font-weight: 500;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  /* line-height: 2.5; */
+  /* color: var(--primary-extra-light); */
+  word-spacing: -4px;
+  margin-bottom: 5px;
+}
+
+p {
+  line-height: 1.3;
+  word-spacing: -2px;
+  font-size: clamp(.8rem, 1.5vw, 1rem);
 }
