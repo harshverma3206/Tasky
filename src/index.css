@@ -4,10 +4,10 @@
 :root {
   /* --primary: #ffd3b3; */
   --primary-dark: #d56610;
-  --primary-light: rgba(255, 255, 255, 0.4);
-  --primary-extra-light: #e4ddd9;
+  --primary-light: rgba(255, 255, 255, 0.3);
+  --primary-extra-light: #f1e3da;
   --primary-black: #23201D;
-  --glass-color: rgba(255, 255, 255, 0.22);
+  --glass-color: rgba(255, 255, 255, 0.42);
 }
 
 * {
@@ -16,7 +16,6 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
   font-family: "Elms Sans", sans-serif;
-  transition: all 0.2s ease-in-out;
 }
 
 html,
@@ -25,7 +24,10 @@ body {
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
+}
 
+.transitionClass {
+  transition: all 0.2s ease;
 }
 
 img {
@@ -66,4 +68,11 @@ p {
   line-height: 1.3;
   word-spacing: -2px;
   font-size: clamp(.8rem, 1.5vw, 1rem);
+}
+
+.HighlightClass {
+  border: 2px dotted #f1e0dab3;
+  background-color: rgba(104, 104, 144, 0.1);
+  scale: 1.02;
+  z-index: 10;
 }

@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useRef } from 'react'
 
 //Icons
 import { RxCross1 } from "react-icons/rx";
 
-const Completed = () => {
+const Completed = ({ dragEvent, columnRef }) => {
     return (
         <div
-            className='bg-[var(--primary-light)] p-4! lg:px-4! lg:rounded-4xl rounded-2xl w-full min-h-[280px] backdrop-blur-2xl'
+            {...dragEvent}
+            ref={columnRef}
+            className='transitionClass lg:scale-95 bg-[var(--primary-light)] p-4! lg:px-4! rounded-2xl w-full min-h-[280px] backdrop-blur-2xl'
         >
             <div className='flex justify-between mb-5!'>
                 <h2>Completed</h2>
