@@ -1,13 +1,77 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 //Icons
 import { TiPlus } from "react-icons/ti";
 import { RxCross1 } from "react-icons/rx";
 
 //Components
-import Pending from '../Components/Pending';
-import Completed from '../Components/Completed';
-import Progress from '../Components/Progress';
+import Pending from './Pending';
+import Completed from './Completed';
+import Progress from './Progress';
+
+//PendingTask Array
+const PendingTask = [
+    {
+        id: 1,
+        name: 'Js Project 02',
+        description: 'I have to completed this project in this week lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, doloremque.',
+        priority: true,
+    },
+    {
+        id: 2,
+        name: 'Pranshu Reel Edit',
+        description: 'Pranshu Bhai pehle de to de ek baar video',
+        priority: false,
+    },
+    {
+        id: 3,
+        name: 'Next Week All Scripts',
+        description: 'Kar dunga aaj kuch bhi karke',
+        priority: true,
+    },
+    {
+        id: 4,
+        name: 'Calcodesk Website',
+        description: '',
+        priority: false
+    },
+    {
+        id: 5,
+        name: 'Pranshu Reel Edit',
+        description: 'Pranshu Bhai pehle de to de ek baar video',
+        priority: false,
+    },
+    {
+        id: 6,
+        name: 'Next Week All Scripts',
+        description: 'Kar dunga aaj kuch bhi karke',
+        priority: true,
+    },
+    {
+        id: 7,
+        name: 'Calcodesk Website',
+        description: '',
+        priority: false
+    },
+    {
+        id: 8,
+        name: 'Pranshu Reel Edit',
+        description: 'Pranshu Bhai pehle de to de ek baar video',
+        priority: false,
+    },
+    {
+        id: 9,
+        name: 'Next Week All Scripts',
+        description: 'Kar dunga aaj kuch bhi karke',
+        priority: true,
+    },
+    {
+        id: 10,
+        name: 'Calcodesk Website',
+        description: '',
+        priority: true
+    }
+];
 
 const Hero = () => {
 
@@ -16,38 +80,20 @@ const Hero = () => {
     const progressRef = useRef()
     const completedRef = useRef()
 
-    const PendingTask = [
-        {
-            name: 'Js Project 02',
-            description: 'I have to completed this project in this week lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, doloremque.',
-            priority: 'true',
-        },
-        {
-            name: 'Pranshu Reel Edit',
-            description: 'Pranshu Bhai pehle de to de ek baar video',
-            priority: 'false',
-        },
-        {
-            name: 'Next Week All Scripts',
-            description: 'Kar dunga aaj kuch bhi karke',
-            priority: 'true',
-        },
-        {
-            name: 'Calcodesk Website',
-            description: '',
-            priority: 'false'
-        }
-    ];
-
     //Function of Drag Handler
     const DragHandle = (ref) => ({
+        onDrag: (e) => {
+            // console.log(e);
+        },
         onDragEnter: () => {
             ref.current.classList.add("HighlightClass");
         },
-        onDragLeave: () => {
+        onDragLeave: (e) => {
+            if (ref.current.contains(e.relatedTarget)) return;
             ref.current.classList.remove("HighlightClass");
         },
-        onDrop: () => {
+        onDrop: (e) => {
+            e.preventDefault()
             ref.current.classList.remove("HighlightClass");
         },
         onDragOver: (e) => {
@@ -64,9 +110,9 @@ const Hero = () => {
             <h1 className='lg:px-10! fixed top-5 left-5'>Tasky</h1>
 
             {/* Board */}
-            <div className='transitionClass flex flex-col lg:flex-row gap-5 justify-between mt-25! lg:grow pb-8!'>
+            <div className='transitionClass flex flex-col lg:flex-row gap-5 justify-between mt-20! lg:grow pb-8!'>
                 <Pending
-                    Task={PendingTask}
+                    Tasks={PendingTask}
                     dragEvent={DragHandle(pendingRef)}
                     columnRef={pendingRef}
                 />
