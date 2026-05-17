@@ -10,24 +10,23 @@ const Pending = ({ Tasks, dragEvent, columnRef }) => {
         [...Tasks].sort((a, b) => b.priority - a.priority)
     ), [Tasks])
 
-
     return (
         <div
             {...dragEvent}
             ref={columnRef}
-            className='transitionClass relative lg:scale-95 bg-[var(--primary-light)] p-4! lg:px-4! rounded-2xl w-full min-h-[280px] backdrop-blur-2xl'
+            className='transitionClass columnClass'
         >
-            <div className='fixed top-5 flex'>
+            <div className='fixed left-0 right-0 top-5 flex justify-between px-6!'>
                 <h2>Pending</h2>
                 <h2>{Tasks.length}</h2>
             </div>
 
-            <div className='flex flex-col gap-2 overflow-scroll h-[70vh] rounded-2xl mt-12!'>
+            <div className='taskContainer'>
                 {sortedTask.map((task, index) => (
                     <div
                         draggable='true'
                         key={task.id}
-                        className='bg-[var(--glass-color)] backdrop-blur-3xl px-4! py-3! rounded-2xl cursor-grab group relative'
+                        className='bg-[var(--glass-color)] backdrop-blur-3xl px-4! py-3! rounded-2xl cursor-grab group relative w-full'
                     >
                         <h3>{task.name}</h3>
                         <p>{task.description}</p>

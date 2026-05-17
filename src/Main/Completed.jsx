@@ -8,9 +8,9 @@ const Completed = ({ dragEvent, columnRef }) => {
         <div
             {...dragEvent}
             ref={columnRef}
-            className='transitionClass lg:scale-95 bg-[var(--primary-light)] p-4! lg:px-4! rounded-2xl w-full min-h-[280px] backdrop-blur-2xl'
+            className='transitionClass columnClass'
         >
-            <div className='flex justify-between mb-5!'>
+            <div className='fixed left-0 right-0 top-5 flex justify-between px-6!'>
                 <h2>Completed</h2>
                 <h2>0</h2>
             </div>

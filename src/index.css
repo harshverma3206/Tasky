@@ -18,16 +18,16 @@
   font-family: "Elms Sans", sans-serif;
 }
 
+.transitionClass {
+  transition: all 0.2s ease;
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-}
-
-.transitionClass {
-  transition: all 0.2s ease;
 }
 
 img {
@@ -40,7 +40,6 @@ button {
   border: none;
   z-index: 10;
 }
-
 
 h1 {
   font-family: "Manufacturing Consent", system-ui;
@@ -75,4 +74,48 @@ p {
   background-color: rgba(104, 104, 144, 0.1);
   scale: 1.02;
   z-index: 10;
+}
+
+.columnClass {
+  position: relative;
+  scale: 0.95;
+  background-color: var(--primary-light);
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 100%;
+  min-height: 280px;
+  max-height: 620px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+@media (min-width: 1024px) {
+  .columnClass {
+    scale: 0.95;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-height: 100%;
+  }
+}
+
+.taskContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-radius: 1rem;
+    margin-top: 3.75rem;
+    height: 60vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.taskContainer::-webkit-scrollbar {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .taskContainer {
+        height: 75vh;
+    }
 }

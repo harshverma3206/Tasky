@@ -110,7 +110,7 @@ const Hero = () => {
             <h1 className='lg:px-10! fixed top-5 left-5'>Tasky</h1>
 
             {/* Board */}
-            <div className='transitionClass flex flex-col lg:flex-row gap-5 justify-between mt-20! lg:grow pb-8!'>
+            <div className='transitionClass flex flex-col lg:flex-row gap-5 lg:gap-0 justify-between mt-20! lg:grow pb-8!'>
                 <Pending
                     Tasks={PendingTask}
                     dragEvent={DragHandle(pendingRef)}
