@@ -80,21 +80,22 @@ const Hero = () => {
     const progressRef = useRef()
     const completedRef = useRef()
 
+
     //Function of Drag Handler
-    const DragHandle = (ref) => ({
-        onDrag: (e) => {
-            // console.log(e);
-        },
-        onDragEnter: () => {
-            ref.current.classList.add("HighlightClass");
+    const DragHandle = (columnRef) => ({
+        onDragEnter: (e) => {
+            e.preventDefault()
+            columnRef.current.classList.add("HighlightClass");
         },
         onDragLeave: (e) => {
-            if (ref.current.contains(e.relatedTarget)) return;
-            ref.current.classList.remove("HighlightClass");
+            e.preventDefault()
+            if (columnRef.current.contains(e.relatedTarget)) return;
+            columnRef.current.classList.remove("HighlightClass");
         },
         onDrop: (e) => {
             e.preventDefault()
-            ref.current.classList.remove("HighlightClass");
+            columnRef.current.classList.remove("HighlightClass");
+            console.log(columnRef);
         },
         onDragOver: (e) => {
             e.preventDefault()
@@ -110,7 +111,7 @@ const Hero = () => {
             <h1 className='lg:px-10! fixed top-5 left-5'>Tasky</h1>
 
             {/* Board */}
-            <div className='transitionClass flex flex-col lg:flex-row gap-5 lg:gap-0 justify-between mt-20! lg:grow pb-8!'>
+            <div className='transitionClass flex flex-col lg:flex-row gap-5 lg:gap-3 justify-between mt-20! lg:grow pb-8!'>
                 <Pending
                     Tasks={PendingTask}
                     dragEvent={DragHandle(pendingRef)}

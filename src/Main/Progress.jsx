@@ -5,6 +5,7 @@ const Progress = ({ dragEvent, columnRef }) => {
         <div
             {...dragEvent}
             ref={columnRef}
+            id='progress'
             className='transitionClass columnClass'
 
         >

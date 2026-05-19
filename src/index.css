@@ -71,27 +71,29 @@ p {
 
 .HighlightClass {
   border: 2px dotted #f1e0dab3;
-  background-color: rgba(104, 104, 144, 0.1);
-  scale: 1.02;
+  background-color: rgba(104, 104, 144, 0.1)!important;
+  scale: 1.03;
   z-index: 10;
 }
 
 .columnClass {
   position: relative;
-  scale: 0.95;
+  /* scale: 0.95; */
   background-color: var(--primary-light);
   padding: 1rem;
   border-radius: 1rem;
   width: 100%;
   min-height: 280px;
-  max-height: 620px;
+  max-height: 700px;
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
+  height: 83vh;
+
 }
 
 @media (min-width: 1024px) {
   .columnClass {
-    scale: 0.95;
+    /* scale: 0.95; */
     padding-left: 1rem;
     padding-right: 1rem;
     max-height: 100%;
@@ -99,23 +101,17 @@ p {
 }
 
 .taskContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    border-radius: 1rem;
-    margin-top: 3.75rem;
-    height: 60vh;
-    overflow-y: scroll;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-radius: 1rem;
+  margin-top: 3.75rem;
+  height: 90%;
+  overflow : scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .taskContainer::-webkit-scrollbar {
-    display: none;
-}
-
-@media (min-width: 1024px) {
-    .taskContainer {
-        height: 75vh;
-    }
+  display: none;
 }

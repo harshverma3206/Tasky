@@ -8,6 +8,7 @@ const Completed = ({ dragEvent, columnRef }) => {
         <div
             {...dragEvent}
             ref={columnRef}
+            id='complete'
             className='transitionClass columnClass'
         >
             <div className='fixed left-0 right-0 top-5 flex justify-between px-6!'>
