@@ -4,22 +4,9 @@ import React, { use, useEffect, useMemo, useRef, useState } from 'react'
 import { RxCross1 } from "react-icons/rx";
 import { FaArrowUp } from "react-icons/fa";
 
-const Pending = ({ Tasks, dragEvent, columnRef }) => {
+const Pending = ({ Tasks, dragEvent, columnRef, onTaskDragStart }) => {
 
     const taskRef = useRef([])
-
-    //Variables
-    let dragElement = null
-
-    const findCurrentElement = (task, index) => {
-        dragElement = taskRef.current[index];
-        console.log(dragElement);
-    }
-
-    //Sort task as Priority
-    const sortedTask = useMemo(() => (
-        [...Tasks].sort((a, b) => b.priority - a.priority)
-    ), [Tasks])
 
     return (
         <div
@@ -34,11 +21,11 @@ const Pending = ({ Tasks, dragEvent, columnRef }) => {
             </div>
 
             <div className='taskContainer'>
-                {sortedTask.map((task, index) => (
+                {Tasks.map((task, index) => (
                     <div
                         ref={(el) => (taskRef.current[index] = el)}
                         onDrag={(e) => {
-                            findCurrentElement(task, index)
+                            onTaskDragStart(task)
                         }}
                         draggable='true'
                         key={task.id}
@@ -47,7 +34,6 @@ const Pending = ({ Tasks, dragEvent, columnRef }) => {
                         <h3>{task.name}</h3>
                         <p>{task.description}</p>
                         <button
-
                             className='bg-red-700/70 rounded-full p-1.5! cursor-default! active:scale-80 text-red-50 font-bold md:opacity-0 group-hover:opacity-100 fixed top-3 right-3'>
                             <RxCross1 size={7} strokeWidth={1.5} />
                         </button>

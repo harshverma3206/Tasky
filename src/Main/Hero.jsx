@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useMemo } from 'react'
 
 //Icons
 import { TiPlus } from "react-icons/ti";
@@ -73,32 +73,105 @@ const PendingTask = [
     }
 ];
 
+// const progressTask = [
+//     {
+//         id: 1,
+//         name: 'Js Project 02',
+//         description: 'I have to completed this project in this week lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, doloremque.',
+//         priority: true,
+//     },
+//     {
+//         id: 2,
+//         name: 'Pranshu Reel Edit',
+//         description: 'Pranshu Bhai pehle de to de ek baar video',
+//         priority: false,
+//     },
+//     {
+//         id: 3,
+//         name: 'Next Week All Scripts',
+//         description: 'Kar dunga aaj kuch bhi karke',
+//         priority: true,
+//     },
+//     {
+//         id: 4,
+//         name: 'Calcodesk Website',
+//         description: '',
+//         priority: false
+//     },
+//     {
+//         id: 5,
+//         name: 'Pranshu Reel Edit',
+//         description: 'Pranshu Bhai pehle de to de ek baar video',
+//         priority: false,
+//     },
+//     {
+//         id: 6,
+//         name: 'Next Week All Scripts',
+//         description: 'Kar dunga aaj kuch bhi karke',
+//         priority: true,
+//     },
+//     {
+//         id: 7,
+//         name: 'Calcodesk Website',
+//         description: '',
+//         priority: false
+//     },
+//     {
+//         id: 8,
+//         name: 'Pranshu Reel Edit',
+//         description: 'Pranshu Bhai pehle de to de ek baar video',
+//         priority: false,
+//     },
+//     {
+//         id: 9,
+//         name: 'Next Week All Scripts',
+//         description: 'Kar dunga aaj kuch bhi karke',
+//         priority: true,
+//     },
+//     {
+//         id: 10,
+//         name: 'Calcodesk Website',
+//         description: '',
+//         priority: true
+//     }
+// ];
+
 const Hero = () => {
 
-    // useRefs
-    const pendingRef = useRef()
-    const progressRef = useRef()
-    const completedRef = useRef()
+    const [progressTask, setProgressTask] = useState([null])
+    const [completedTask, setCompletedTask] = useState([])
 
+    //Sort task as Priority
+    const sortedTask = useMemo(() => (
+        [...PendingTask].sort((a, b) => b.priority - a.priority)
+    ), [PendingTask])
+
+    // useRefs
+    const pendingRef = useRef();
+    const progressRef = useRef();
+    const completedRef = useRef();
+    const dragElementRef = useRef();
 
     //Function of Drag Handler
     const DragHandle = (columnRef) => ({
         onDragEnter: (e) => {
-            e.preventDefault()
+            e.preventDefault();
             columnRef.current.classList.add("HighlightClass");
         },
         onDragLeave: (e) => {
-            e.preventDefault()
+            e.preventDefault();
             if (columnRef.current.contains(e.relatedTarget)) return;
             columnRef.current.classList.remove("HighlightClass");
         },
         onDrop: (e) => {
-            e.preventDefault()
+            e.preventDefault();
             columnRef.current.classList.remove("HighlightClass");
             console.log(columnRef);
+            console.log(dragElementRef.current);
+            columnRef.appendChild(dragElementRef)
         },
         onDragOver: (e) => {
-            e.preventDefault()
+            e.preventDefault();
         }
     })
 
@@ -113,16 +186,18 @@ const Hero = () => {
             {/* Board */}
             <div className='transitionClass flex flex-col lg:flex-row gap-5 lg:gap-3 justify-between mt-20! lg:grow pb-8!'>
                 <Pending
-                    Tasks={PendingTask}
+                    onTaskDragStart={(task) => (dragElementRef.current = task)}
+                    Tasks={sortedTask}
                     dragEvent={DragHandle(pendingRef)}
                     columnRef={pendingRef}
                 />
                 <Progress
-                    // Task={ProgressTask}
+                    Tasks={progressTask}
                     dragEvent={DragHandle(progressRef)}
                     columnRef={progressRef}
                 />
                 <Completed
+                    Tasks={completedTask}
                     dragEvent={DragHandle(completedRef)}
                     columnRef={completedRef}
                 />
